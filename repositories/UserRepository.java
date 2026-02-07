@@ -1,8 +1,8 @@
 package repositories;
 
-import models.User;
 import java.io.*;
 import java.util.*;
+import models.User;
 
 public class UserRepository {
     private static final String CSV_FILE = "users.csv";
@@ -10,17 +10,14 @@ public class UserRepository {
     
     public List<User> getAllUsers() {
         List<User> users = new ArrayList<>();
-        
         try (BufferedReader br = new BufferedReader(new FileReader(CSV_FILE))) {
             String line;
             boolean isFirstLine = true;
-            
             while ((line = br.readLine()) != null) {
                 if (isFirstLine) {
                     isFirstLine = false;
                     continue;
                 }
-                
                 String[] values = line.split(",");
                 if (values.length == 4) {
                     User user = new User(
@@ -37,7 +34,6 @@ public class UserRepository {
             initializeCSV();
             return getAllUsers();
         }
-        
         return users;
     }
     
@@ -84,12 +80,10 @@ public class UserRepository {
     private void initializeCSV() {
         try (PrintWriter pw = new PrintWriter(new FileWriter(CSV_FILE))) {
             pw.println(HEADER);
-            
             List<User> sampleUsers = Arrays.asList(
                 new User("buyer", "123", User.UserType.BUYER, 1000.00),
                 new User("seller", "123", User.UserType.SELLER, 0.00)
             );
-            
             for (User user : sampleUsers) {
                 pw.println(String.format("%s,%s,%s,%.2f",
                     user.getUsername(),

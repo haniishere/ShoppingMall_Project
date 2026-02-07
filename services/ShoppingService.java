@@ -123,7 +123,6 @@ public class ShoppingService {
     //Order methods
     public Order checkout() {
         if (!isBuyer() || cart.isEmpty()) return null;
-        
         double total = getCartTotal();
         if (currentUser.getBalance() >= total) {
             for (CartItem item : cart) {
@@ -135,7 +134,6 @@ public class ShoppingService {
             userRepository.updateUser(currentUser);
             Order order = new Order(orderCounter++, currentUser.getUsername(), 
                                   new ArrayList<>(cart), total);
-            
             clearCart();
             return order;
         }
@@ -147,7 +145,6 @@ public class ShoppingService {
         if (userRepository.getUserByUsername(username) != null) {
             return false;
         }
-        
         double initialBalance = type == User.UserType.BUYER ? 500.00 : 0.00;
         User newUser = new User(username, password, type, initialBalance);
         userRepository.addUser(newUser);

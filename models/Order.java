@@ -26,7 +26,6 @@ public class Order {
         this.status = OrderStatus.PENDING;
     }
     
-    // Getters and Setters
     public int getOrderId() { return orderId; }
     public void setOrderId(int orderId) { this.orderId = orderId; }
     

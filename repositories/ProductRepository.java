@@ -10,17 +10,14 @@ public class ProductRepository {
     
     public List<Product> getAllProducts() {
         List<Product> products = new ArrayList<>();
-        
         try (BufferedReader br = new BufferedReader(new FileReader(CSV_FILE))) {
             String line;
             boolean isFirstLine = true;
-            
             while ((line = br.readLine()) != null) {
                 if (isFirstLine) {
                     isFirstLine = false;
                     continue;
                 }
-                
                 String[] values = line.split(",");
                 if (values.length == 6) {
                     Product product = new Product(
@@ -38,7 +35,6 @@ public class ProductRepository {
             System.out.println("CSV file not found, creating new one: " + e.getMessage());
             initializeCSV();
         }
-        
         return products;
     }
     
@@ -51,12 +47,9 @@ public class ProductRepository {
     
     public void addProduct(Product product) {
         List<Product> products = getAllProducts();
-        
-        // Generate new ID
         int newId = products.isEmpty() ? 1 : 
                     products.stream().mapToInt(Product::getId).max().getAsInt() + 1;
         product.setId(newId);
-        
         products.add(product);
         saveAllProducts(products);
     }
@@ -100,13 +93,13 @@ public class ProductRepository {
         try (PrintWriter pw = new PrintWriter(new FileWriter(CSV_FILE))) {
             pw.println(HEADER);
             List<Product> sampleProducts = Arrays.asList(
-                new Product(1, "Laptop", "Gaming laptop with RTX 4090", 
+                new Product(1, "Laptop", "Gaming laptop", 
                            Product.Category.ELECTRONICS, 1999.99, 10),
-                new Product(2, "TShirt", "Cotton T-Shirt", 
+                new Product(2, "TShirt", "Black T-Shirt", 
                            Product.Category.CLOTHING, 29.99, 50),
-                new Product(3, "Shahnameh", "Learn Java programming", 
+                new Product(3, "Shahnameh", "Shahnameh Ferdowsi", 
                            Product.Category.BOOKS, 49.99, 30),
-                new Product(4, "Orange", "Fresh red apples", 
+                new Product(4, "Orange", "Fruit", 
                            Product.Category.GROCERIES, 2.99, 100)
             );
             

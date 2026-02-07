@@ -18,7 +18,6 @@ public class User {
         this.balance = balance;
     }
     
-    // Getters and Setters
     public String getUsername() { return username; }
     public void setUsername(String username) { this.username = username; }
     
@@ -34,7 +33,6 @@ public class User {
     public void deductBalance(double amount) {
         this.balance -= amount;
     }
-    
     public void addBalance(double amount) {
         this.balance += amount;
     }

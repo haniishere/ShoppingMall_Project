@@ -34,7 +34,6 @@ public class Product {
         this.stockQuantity = stockQuantity;
     }
     
-    // Getters and Setters
     public int getId() { return id; }
     public void setId(int id) { this.id = id; }
     
