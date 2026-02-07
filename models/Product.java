@@ -1,120 +1,64 @@
 package models;
 
-import java.io.Serializable;
+import java.util.Arrays;
+import java.util.List;
 
-public class Product implements Serializable {
-    private static final long serialVersionUID = 1L;
-    
-    private String productId;
+public class Product {
+    private int id;
     private String name;
-    private String category;
-    private double price;
-    private int quantity;
     private String description;
+    private Category category;
+    private double price;
+    private int stockQuantity;
+    
+    public enum Category {
+        ELECTRONICS,
+        CLOTHING,
+        BOOKS,
+        GROCERIES,
+        FURNITURE,
+        SPORTS,
+        BEAUTY
+    }
     
     public Product() {
     }
     
-    public Product(String productId, String name, String category, double price, int quantity, String description) {
-        this.productId = productId;
+    public Product(int id, String name, String description, Category category, 
+                  double price, int stockQuantity) {
+        this.id = id;
         this.name = name;
+        this.description = description;
         this.category = category;
         this.price = price;
-        this.quantity = quantity;
-        this.description = description;
+        this.stockQuantity = stockQuantity;
     }
     
     // Getters and Setters
-    public String getProductId() {
-        return productId;
-    }
+    public int getId() { return id; }
+    public void setId(int id) { this.id = id; }
     
-    public void setProductId(String productId) {
-        this.productId = productId;
-    }
+    public String getName() { return name; }
+    public void setName(String name) { this.name = name; }
     
-    public String getName() {
-        return name;
-    }
+    public String getDescription() { return description; }
+    public void setDescription(String description) { this.description = description; }
     
-    public void setName(String name) {
-        this.name = name;
-    }
+    public Category getCategory() { return category; }
+    public void setCategory(Category category) { this.category = category; }
     
-    public String getCategory() {
-        return category;
-    }
+    public double getPrice() { return price; }
+    public void setPrice(double price) { this.price = price; }
     
-    public void setCategory(String category) {
-        this.category = category;
-    }
+    public int getStockQuantity() { return stockQuantity; }
+    public void setStockQuantity(int stockQuantity) { this.stockQuantity = stockQuantity; }
     
-    public double getPrice() {
-        return price;
-    }
-    
-    public void setPrice(double price) {
-        this.price = price;
-    }
-    
-    public int getQuantity() {
-        return quantity;
-    }
-    
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
-    }
-    
-    public String getDescription() {
-        return description;
-    }
-    
-    public void setDescription(String description) {
-        this.description = description;
-    }
-    
-    
-    public boolean isInStock() {
-        return quantity > 0;
-    }
-    
-    public void decreaseQuantity(int amount) {
-        if (amount > 0 && quantity >= amount) {
-            quantity -= amount;
-        }
-    }
-    
-    public void increaseQuantity(int amount) {
-        if (amount > 0) {
-            quantity += amount;
-        }
+    public static List<Category> getAllCategories() {
+        return Arrays.asList(Category.values());
     }
     
     @Override
     public String toString() {
-        return String.format("ID: %s | Name: %s | Category: %s | Price: %.2f | Qty: %d | Desc: %s",
-                productId, name, category, price, quantity, description);
-    }
-    
-    // Convert format 
-    public String toCSV() {
-        return String.format("%s,%s,%s,%.2f,%d,%s",
-                productId, name, category, price, quantity, description);
-    }
-    
-    // Create Product
-    public static Product fromCSV(String csv) {
-        String[] parts = csv.split(",", 6);
-        if (parts.length == 6) {
-            return new Product(
-                parts[0].trim(),
-                parts[1].trim(),
-                parts[2].trim(),
-                Double.parseDouble(parts[3].trim()),
-                Integer.parseInt(parts[4].trim()),
-                parts[5].trim()
-            );
-        }
-        return null;
+        return name + " ($" + price + ")";
     }
 }
