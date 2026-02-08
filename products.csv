@@ -1,6 +1,5 @@
 id,name,description,category,price,stock
-1,Laptop,Gaming laptop with RTX 4090,ELECTRONICS,1999.99,10
-2,TShirt,Cotton T-Shirt,CLOTHING,29.99,50
-3,Shahnameh,Learn Java programming,BOOKS,49.99,30
-4,Orange,Fresh red apples,GROCERIES,2.99,99
-5,test,testetest,ELECTRONICS,100.00,0
+1,Laptop,Gaming laptop,ELECTRONICS,1999.99,10
+2,TShirt,Black T-Shirt,CLOTHING,29.99,50
+3,Shahnameh,Shahnameh Ferdowsi,BOOKS,49.99,30
+4,Orange,Fruit,GROCERIES,2.99,100
