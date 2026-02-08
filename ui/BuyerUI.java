@@ -253,7 +253,7 @@ public class BuyerUI extends JFrame {
     
     private void loadProducts() {
         productsModel.setRowCount(0);
-        allProducts = shoppingService.getAllProducts(); // Refresh products list
+        allProducts = shoppingService.getAllProducts(); 
         for (Product product : allProducts) {
             if (product.getStockQuantity() > 0) {
                 productsModel.addRow(new Object[]{
